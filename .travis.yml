@@ -6,7 +6,6 @@ branches:
 language: java
 jdk:
 - openjdk14
-dist: focal
 before_install: 
 install:
 - mvn install -Dgpg.skip=true -P !build-extras -B -V
@@ -18,3 +17,11 @@ cache:
 after_success:
 - "./cd/deploy.sh"
 after_failure: 
+
+jobs:
+  include:
+    - dist: xenial
+    - dist: bionic
+    - dist: focal
+    - dist: jammy
+    
